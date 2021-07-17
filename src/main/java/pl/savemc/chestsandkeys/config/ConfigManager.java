@@ -36,7 +36,7 @@ public class ConfigManager {
         }
     }
 
-    public Config<PluginConfig> getPluginConfig() {
-        return pluginConfig;
+    public PluginConfig getPluginConfig() {
+        return pluginConfig.getConfig();
     }
 }

@@ -44,7 +44,7 @@ public class Config<T extends Serializable> {
             }
 
             if (!file.createNewFile()) {
-                smcLogger.warn("Cannot create of " + fileName);
+                smcLogger.debug("Cannot create of " + fileName);
             }
 
             loadConfig(file);

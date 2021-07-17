@@ -2,11 +2,17 @@ package pl.savemc.chestsandkeys;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
+import pl.savemc.chestsandkeys.config.ConfigManager;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+/**
+ * @author FunnyGuildsTeam
+ * @see <a href="https://github.com/FunnyGuilds/FunnyGuilds/blob/master/plugin/src/main/java/net/dzikoysk/funnyguilds/FunnyGuildsLogger.java">FunnyGuildsLogger.java</a>
+ */
 
 public class SMCLogger {
 
@@ -26,13 +32,59 @@ public class SMCLogger {
         rootLogger.warning(content);
     }
 
+    public void debug(String content) {
+        ConfigManager manager = plugin.getConfigManager();
+
+        if (manager != null && manager.getPluginConfig() != null && !manager.getPluginConfig().debugConsole) {
+            return;
+        }
+
+        this.rootLogger.info("[Debug] > " + content);
+    }
+
+    public void debug(String content, Throwable cause) {
+        ConfigManager manager = plugin.getConfigManager();
+
+        if (manager != null && manager.getPluginConfig() != null && !manager.getPluginConfig().debugConsole) {
+            return;
+        }
+
+        String loadedPlugins = Arrays.stream(Bukkit.getPluginManager().getPlugins())
+                .filter(plugin -> !plugin.getName().contains(this.plugin.getName()))
+                .map(plugin -> plugin.getName() + " " + plugin.getDescription().getVersion())
+                .collect(Collectors.joining(", "));
+
+        if (loadedPlugins.length() == 0) {
+            loadedPlugins = "none";
+        }
+
+        debug("");
+        debug(content);
+        debug("");
+        debug(cause.toString());
+
+        for (StackTraceElement element : cause.getStackTrace()) {
+            debug("       at " + element.toString());
+        }
+
+        debug("");
+        debug("Server Information:");
+        debug("  " + this.plugin.getName() + ": " + this.plugin.getDescription().getVersion());
+        debug("  Bukkit: " + Bukkit.getBukkitVersion());
+        debug("  Java: " + System.getProperty("java.version"));
+        debug("  Thread: " + Thread.currentThread());
+        debug("  Loaded plugins: " + loadedPlugins);
+        debug("  Reload count: " + getReloadCount());
+        debug("");
+    }
+
     public void error(String content) {
         rootLogger.severe(content);
     }
 
     public void error(String content, Throwable cause) {
         String loadedPlugins = Arrays.stream(Bukkit.getPluginManager().getPlugins())
-                .filter(plugin -> !plugin.getName().contains("SMC-Dzialki"))
+                .filter(plugin -> !plugin.getName().contains(this.plugin.getName()))
                 .map(plugin -> plugin.getName() + " " + plugin.getDescription().getVersion())
                 .collect(Collectors.joining(", "));
 
@@ -51,7 +103,7 @@ public class SMCLogger {
 
         error("");
         error("Server Information:");
-        error("  SMC-Dzialki: " + this.plugin.getDescription().getVersion());
+        error("  " + this.plugin.getName() + ": " + this.plugin.getDescription().getVersion());
         error("  Bukkit: " + Bukkit.getBukkitVersion());
         error("  Java: " + System.getProperty("java.version"));
         error("  Thread: " + Thread.currentThread());
