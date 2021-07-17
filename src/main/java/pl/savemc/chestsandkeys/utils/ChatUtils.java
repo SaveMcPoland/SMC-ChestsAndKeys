@@ -1,4 +1,4 @@
-package pl.savemc.chestsandkeys.Utils;
+package pl.savemc.chestsandkeys.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public final class ChatUtils {
 
-    private ChatUtils(){}
+    private ChatUtils() {}
 
     public static String colored(String toColor){
         return ChatColor.translateAlternateColorCodes('&', toColor);

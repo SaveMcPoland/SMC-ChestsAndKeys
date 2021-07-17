@@ -1,4 +1,4 @@
-package pl.savemc.chestsandkeys.Utils;
+package pl.savemc.chestsandkeys.utils;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

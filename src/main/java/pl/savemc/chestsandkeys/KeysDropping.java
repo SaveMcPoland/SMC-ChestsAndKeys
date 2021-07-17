@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 import java.util.Random;
 
-public class KeysDropping implements Listener{
+public class KeysDropping implements Listener {
 
     private final SMCChestsAndKeys plugin;
     // chance of drop keys from stone, 10 = 1%
@@ -24,14 +24,15 @@ public class KeysDropping implements Listener{
     public void onMine(BlockBreakEvent event){
         Player player = event.getPlayer();
         Block block = event.getBlock();
-        if(block.getType() == Material.STONE){
+
+        if (block.getType() == Material.STONE){
             int rnd = new Random().nextInt(1000);
-            if(rnd < slvChance + gldChance + dmdChance){
-                if(rnd < slvChance){
+            if (rnd < slvChance + gldChance + dmdChance){
+                if (rnd < slvChance){
                     // drop slv
-                }else if(rnd > slvChance && rnd < slvChance + gldChance){
+                } else if(rnd > slvChance && rnd < slvChance + gldChance){
                     // drop gold
-                }else if(rnd > slvChance + gldChance && rnd > slvChance + gldChance + dmdChance){
+                } else if(rnd > slvChance + gldChance && rnd > slvChance + gldChance + dmdChance){
                     // drop diamond
                 }
             }

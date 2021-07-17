@@ -2,3 +2,4 @@ name: SMC-ChestsAndKeys
 version: ${project.version}
 main: pl.savemc.chestsandkeys.SMCChestsAndKeys
 api-version: 1.16
+authors: [Kamicjusz, Rollczi]
