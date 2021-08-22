@@ -31,8 +31,8 @@ public final class ItemBuilder {
     }
 
     public ItemBuilder(final ItemStack itemStack) {
-        this.itemStack = itemStack;
-        this.itemMeta = itemStack.getItemMeta();
+        this.itemStack = new ItemStack(itemStack);
+        this.itemMeta = this.itemStack.getItemMeta();
     }
 
     public void refreshMeta() {
@@ -77,7 +77,7 @@ public final class ItemBuilder {
     }
 
     public ItemStack getItem() {
-        return this.itemStack;
+        return new ItemStack(this.itemStack);
     }
 
     public ItemMeta getMeta() {
