@@ -7,6 +7,7 @@ public class ConfigManager {
 
     private final SMCChestsAndKeys plugin;
     private Config<PluginConfig> pluginConfig;
+    private Config<ChestConfig> chestConfig;
 
     public ConfigManager(SMCChestsAndKeys plugin) {
         this.plugin = plugin;
@@ -39,4 +40,9 @@ public class ConfigManager {
     public PluginConfig getPluginConfig() {
         return pluginConfig.getConfig();
     }
+
+    public ChestConfig getChestConfig() {
+        return chestConfig.getConfig();
+    }
+
 }

@@ -21,13 +21,11 @@ public final class ChatUtils {
                 .collect(Collectors.toList());
     }
 
-    public static boolean sendMessage(Player player, String message){
+    public static void sendMessage(Player player, String message){
         player.sendMessage(colored(message));
-        return true;
     }
 
-    public static boolean sendMessage(CommandSender commandSender, String message){
+    public static void sendMessage(CommandSender commandSender, String message){
         commandSender.sendMessage(colored(message));
-        return true;
     }
 }

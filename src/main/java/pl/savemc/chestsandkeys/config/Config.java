@@ -2,7 +2,7 @@ package pl.savemc.chestsandkeys.config;
 
 import net.dzikoysk.cdn.Cdn;
 import net.dzikoysk.cdn.CdnFactory;
-import org.panda_lang.utilities.commons.FileUtils;
+import panda.utilities.FileUtils;
 import pl.savemc.chestsandkeys.SMCChestsAndKeys;
 import pl.savemc.chestsandkeys.SMCLogger;
 
