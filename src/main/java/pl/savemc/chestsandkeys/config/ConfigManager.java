@@ -15,6 +15,7 @@ public class ConfigManager {
 
     public void loadConfigs() {
         this.pluginConfig = new Config<>(plugin, PluginConfig.class, "config.yml");
+        this.chestConfig = new Config<>(plugin, ChestConfig.class, "chests.yml");
     }
 
     public void saveConfigs() {

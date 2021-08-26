@@ -14,7 +14,7 @@ public class RoyalSetConfig implements Serializable {
     public String name = "example";
     public Chest chest = new Chest();
     public Key key = new Key();
-    public List<ItemConfig> drops = Arrays.asList(
+    public List<DropItemConfig> drops = Arrays.asList(
             new DropItemConfig(Material.DIAMOND, 8),
             new DropItemConfig(Material.EMERALD, 8),
             new DropItemConfig(Material.GOLDEN_APPLE, 3),
