@@ -3,23 +3,19 @@ package pl.savemc.chestsandkeys.config.components;
 import net.dzikoysk.cdn.entity.Contextual;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import panda.std.Pair;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Contextual
 public class DropItemConfig extends ItemConfig {
     public int amount;
-    public Map<String, Integer> enchants;
+    public Map<Enchantment, Integer> enchants;
 
     public DropItemConfig(Material material, int data, int amount, Map<Enchantment, Integer> enchants) {
         super(material, data);
         this.amount = amount;
-        this.enchants = enchants.entrySet().stream()
-                .map(entry -> Pair.of(entry.getKey().getKey().getKey(), entry.getValue()))
-                .collect(Collectors.toMap(Pair::getFirst, Pair::getSecond));
+        this.enchants = enchants;
     }
 
     public DropItemConfig(Material material, int data, int amount) {

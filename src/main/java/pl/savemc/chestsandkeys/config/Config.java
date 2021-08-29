@@ -1,7 +1,6 @@
 package pl.savemc.chestsandkeys.config;
 
 import net.dzikoysk.cdn.Cdn;
-import net.dzikoysk.cdn.CdnFactory;
 import panda.utilities.FileUtils;
 import pl.savemc.chestsandkeys.SMCChestsAndKeys;
 import pl.savemc.chestsandkeys.SMCLogger;
@@ -12,7 +11,6 @@ import java.io.Serializable;
 
 public class Config<T extends Serializable> {
 
-    private final Cdn cdn = CdnFactory.createYamlLike();
     private final SMCChestsAndKeys plugin;
     private final String fileName;
     private final Class<T> tClass;
@@ -22,14 +20,7 @@ public class Config<T extends Serializable> {
         this.plugin = plugin;
         this.fileName = fileName;
         this.tClass = tClass;
-        loadConfigFile();
-    }
 
-    public T getConfig() {
-        return pluginConfig;
-    }
-
-    public void loadConfigFile() {
         File file = new File(plugin.getDataFolder(), fileName);
         SMCLogger smcLogger = plugin.getSmcLogger();
 
@@ -55,8 +46,13 @@ public class Config<T extends Serializable> {
         }
     }
 
+    public T getConfig() {
+        return pluginConfig;
+    }
+
     public void loadConfig(File file) {
         try {
+            Cdn cdn = plugin.getConfigManager().getCdn();
             pluginConfig = cdn.load(file, tClass);
         } catch (Exception ex) {
             plugin.getSmcLogger().error("Cannot load the contents of " + fileName, ex);
@@ -69,7 +65,7 @@ public class Config<T extends Serializable> {
                 plugin.getSmcLogger().error("Cannot save or overwrite the contents of " + fileName + " (Instance config is null)");
                 return;
             }
-
+            Cdn cdn = plugin.getConfigManager().getCdn();
             FileUtils.overrideFile(new File(plugin.getDataFolder().getPath(), fileName), cdn.render(pluginConfig));
         } catch (Exception ex) {
             plugin.getSmcLogger().error("Cannot save or overwrite the contents of " + fileName, ex);

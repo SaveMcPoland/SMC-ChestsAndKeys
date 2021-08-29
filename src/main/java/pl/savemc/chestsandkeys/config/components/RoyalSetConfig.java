@@ -3,11 +3,11 @@ package pl.savemc.chestsandkeys.config.components;
 import net.dzikoysk.cdn.entity.Contextual;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import panda.utilities.collection.Maps;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Contextual
 public class RoyalSetConfig implements Serializable {
@@ -18,8 +18,8 @@ public class RoyalSetConfig implements Serializable {
             new DropItemConfig(Material.DIAMOND, 8),
             new DropItemConfig(Material.EMERALD, 8),
             new DropItemConfig(Material.GOLDEN_APPLE, 3),
-            new DropItemConfig(Material.DIAMOND_SWORD, 0, 1, Map.of(Enchantment.KNOCKBACK, 1)),
-            new DropItemConfig(Material.DIAMOND_SWORD, 0, 1, Map.of(Enchantment.DAMAGE_ALL, 4, Enchantment.FIRE_ASPECT, 2))
+            new DropItemConfig(Material.DIAMOND_SWORD, 0, 1, Maps.of(Enchantment.KNOCKBACK, 1)),
+            new DropItemConfig(Material.DIAMOND_SWORD, 0, 1, Maps.of(Enchantment.DAMAGE_ALL, 4, Enchantment.FIRE_ASPECT, 2))
     );
 
     @Contextual

@@ -1,11 +1,21 @@
 package pl.savemc.chestsandkeys.config;
 
+import net.dzikoysk.cdn.Cdn;
+import net.dzikoysk.cdn.CdnFactory;
+import org.bukkit.enchantments.Enchantment;
 import pl.savemc.chestsandkeys.SMCChestsAndKeys;
 import pl.savemc.chestsandkeys.SMCLogger;
+import pl.savemc.chestsandkeys.config.composers.EnchantmentComposer;
 
 public class ConfigManager {
 
     private final SMCChestsAndKeys plugin;
+    private final Cdn cdn = CdnFactory
+            .createYamlLike()
+            .getSettings()
+            .withComposer(Enchantment.class, new EnchantmentComposer())
+            .build();
+
     private Config<PluginConfig> pluginConfig;
     private Config<ChestConfig> chestConfig;
 
@@ -36,6 +46,10 @@ public class ConfigManager {
             logger.error("----------------------------------------------------------------------------------------");
             logger.error(" ");
         }
+    }
+
+    public Cdn getCdn() {
+        return cdn;
     }
 
     public PluginConfig getPluginConfig() {
