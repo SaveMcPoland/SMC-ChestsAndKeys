@@ -33,6 +33,7 @@ public class ConfigManager {
 
         try {
             this.pluginConfig.saveConfig();
+            this.chestConfig.saveConfig();
         } catch (Exception exception) {
             logger.error("Configuration save error", exception);
         } catch (NoClassDefFoundError exception) {
