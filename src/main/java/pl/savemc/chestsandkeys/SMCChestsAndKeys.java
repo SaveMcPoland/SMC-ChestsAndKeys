@@ -1,7 +1,11 @@
 package pl.savemc.chestsandkeys;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import panda.std.stream.PandaStream;
 import pl.savemc.chestsandkeys.config.ConfigManager;
+import pl.savemc.chestsandkeys.listeners.KeysDropping;
 import pl.savemc.chestsandkeys.system.RoyalSetsManager;
 
 public final class SMCChestsAndKeys extends JavaPlugin {
@@ -16,6 +20,11 @@ public final class SMCChestsAndKeys extends JavaPlugin {
         this.configManager = new ConfigManager(this);
         this.configManager.loadConfigs();
         this.royalSetsManager = new RoyalSetsManager();
+
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        PandaStream.of(
+                new KeysDropping(this)
+        ).forEach(listener -> pluginManager.registerEvents(listener, this));
     }
 
     @Override

@@ -23,7 +23,7 @@ public class KeysDropping implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onMine(BlockBreakEvent event) {
         Block block = event.getBlock();
 
